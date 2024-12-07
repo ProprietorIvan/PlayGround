@@ -26,19 +26,19 @@ const brandData: BrandData = {
         name: 'AZ DRYWALL',
         headline: 'Premier Drywall Solutions',
         description: 'Expert drywall repairs and installations across Greater Vancouver. Professional finishing and guaranteed satisfaction.',
-        url: 'https://azhandyman.ca/drywall/'
+        url: 'https://az-handyman.ca/drywall/'
       },
       {
         name: 'VANCOUVER FLOOD',
         headline: 'Emergency Flood Response',
         description: 'Industry-leading water damage restoration, powered by advanced drying technology and 24/7 emergency response. Your home, restored.',
-        url: 'https://vancouverflood.com/flood-repair-services-in-vancouver/'
+        url: 'https://vancouverflood.com'
       },
       {
         name: 'AZ HANDYMAN',
         headline: 'Complete Home Solutions',
         description: 'Professional handyman services for all your home maintenance needs. From repairs to renovations, we do it all.',
-        url: 'https://azhandyman.ca/handyman-general/'
+        url: 'https://az-handyman.ca'
       },
       {
         name: 'AZ HVAC',
@@ -61,17 +61,7 @@ const brandData: BrandData = {
     ],
     type: 'HOME SERVICES'
   },
-  BURNABY: {
-    brands: [
-      {
-        name: 'BURNABY FLOOD',
-        headline: 'Rapid Flood Response',
-        description: 'Fast, reliable flood restoration services in Burnaby. Available 24/7 for all water damage emergencies.',
-        url: 'https://burnabyflood.com'
-      }
-    ],
-    type: 'RESTORATION'
-  },
+
   SEATTLE: {
     brands: [
       {
@@ -106,7 +96,7 @@ const brandData: BrandData = {
         name: 'ON TIME WATER DAMAGE',
         headline: "Miami's Premium Restoration Service",
         description: 'When storms strike, we respond. Advanced water damage restoration with guaranteed on-time arrival.',
-        url: 'https://miamiflood.com/drying-and-dehumidification-services-in-miami/'
+        url: 'https://miamiflood.com/'
       }
     ],
     type: 'RESTORATION'
@@ -117,7 +107,7 @@ const brandData: BrandData = {
         name: 'RIVIERA YACHTS',
         headline: 'Luxury Yacht Charter',
         description: 'Premium yacht rental experiences in Monaco. Every voyage crafted to perfection.',
-        url: 'https://rivierasyachts.com/welcome/'
+        url: 'https://rivierasyachts.com'
       },
       {
         name: 'RIVIERA STAYS',
@@ -205,28 +195,54 @@ interface AnimatedContentProps {
   territory: string | null;
 }
 
+import { useMemo } from "react";
+
 const AnimatedContent = ({ territory }: AnimatedContentProps) => {
+  const messages = useMemo(
+    () => [
+      "Welcome to Felicita Group",
+      "We build and scale service companies",
+      "From Vancouver to Monaco",
+      "12 brands. 3 continents. 1 vision.",
+      "A new era of service companies",
+    ],
+    []
+  );
+
   const [introComplete, setIntroComplete] = useState(false);
   const [step, setStep] = useState(0);
-  const [isTyping, setIsTyping] = useState(false);
-
-  const messages = [
-    "Welcome to Felicita Group",
-    "We build and scale service companies",
-    "From Vancouver to Monaco",
-    "12 brands. 3 continents. 1 vision.",
-    "A new era of service companies"
-  ];
+  const [currentText, setCurrentText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
 
   useEffect(() => {
-    if (!territory && !introComplete && !isTyping) {
-      if (step < messages.length - 1) {
-        setIsTyping(true);
-      } else {
-        setIntroComplete(true);
-      }
+    if (step >= messages.length) {
+      setIntroComplete(true);
+      return;
     }
-  }, [step, territory, introComplete, messages.length, isTyping]);
+
+    const typeMessage = () => {
+      const currentMessage = messages[step];
+      if (currentText.length < currentMessage.length) {
+        const nextChar = currentMessage[currentText.length];
+        setCurrentText((prev) => prev + nextChar);
+      } else {
+        setIsTyping(false); // Typing is done for this message
+      }
+    };
+
+    if (isTyping) {
+      const timeout = setTimeout(typeMessage, 80); // Typing speed
+      return () => clearTimeout(timeout); // Cleanup timeout on component unmount or re-render
+    } else {
+      // Delay before moving to the next message
+      const delay = setTimeout(() => {
+        setStep((prev) => prev + 1);
+        setCurrentText('');
+        setIsTyping(true);
+      }, 1500); // Adjust delay as needed
+      return () => clearTimeout(delay);
+    }
+  }, [isTyping, currentText, step, messages]);
 
   if (territory) {
     const content = brandData[territory];
@@ -260,7 +276,7 @@ const AnimatedContent = ({ territory }: AnimatedContentProps) => {
                   {(index + 1).toString().padStart(2, '0')}
                 </div>
                 <div className="space-y-4 flex-1">
-                  <a 
+                  <a
                     href={brand.url}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -272,9 +288,7 @@ const AnimatedContent = ({ territory }: AnimatedContentProps) => {
                     <div className="text-xl text-zinc-700 font-medium">
                       {brand.headline}
                     </div>
-                    <div className="text-zinc-600">
-                      {brand.description}
-                    </div>
+                    <div className="text-zinc-600">{brand.description}</div>
                   </a>
                 </div>
               </div>
@@ -283,7 +297,7 @@ const AnimatedContent = ({ territory }: AnimatedContentProps) => {
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
@@ -298,19 +312,7 @@ const AnimatedContent = ({ territory }: AnimatedContentProps) => {
   return (
     <div className="h-full flex items-center justify-center">
       <div className="text-6xl md:text-7xl text-black font-light tracking-tight">
-        {introComplete ? (
-          "A new era of service companies"
-        ) : (
-          <TypeWriter 
-            text={messages[step]} 
-            onComplete={() => {
-              setIsTyping(false);
-              if (step < messages.length - 1) {
-                setTimeout(() => setStep(step + 1), 2000);
-              }
-            }} 
-          />
-        )}
+        {introComplete ? "A new era of service companies" : currentText}
       </div>
     </div>
   );
