@@ -174,7 +174,7 @@ const Home = ({ setCurrentPage }: HomeProps) => {
               </div>
 
               <div className="mt-16 text-xs text-zinc-500 space-y-1 font-medium">
-                <div>EST. 2024</div>
+                <div>EST. 2022</div>
                 <div>OPERATIONS ACROSS 3 CONTINENTS</div>
                 <div>12 BRANDS. 1 VISION.</div>
               </div>
