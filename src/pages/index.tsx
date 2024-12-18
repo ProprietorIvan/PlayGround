@@ -67,7 +67,7 @@ const brandData: BrandData = {
         name: 'SEATTLE FLOOD',
         headline: "Seattle's Water Damage Experts",
         description: 'Professional water damage restoration services across Greater Seattle. 24/7 emergency response.',
-        url: 'https://seattleflood.com'
+        url: 'https://floodbrooklyn.com'
       }
     ],
     type: 'RESTORATION'
@@ -78,13 +78,13 @@ const brandData: BrandData = {
         name: 'S-PRO DAMAGE RESTORATION',
         headline: "Manhattan's Elite Restoration Service",
         description: "Premium damage restoration for Upper Manhattan's luxury properties. When emergencies happen, S-PRO delivers excellence.",
-        url: 'https://sprodamage.com'
+        url: 'https://floodbrooklyn.com'
       },
       {
         name: 'BROOKLYN WATER DAMAGE',
         headline: "Brooklyn's Trusted Restoration Team",
         description: 'Professional water damage restoration services in Downtown Brooklyn. Fast response, superior results.',
-        url: 'https://brooklynwaterdamage.com'
+        url: 'https://floodbrooklyn.com'
       }
     ],
     type: 'RESTORATION'
@@ -202,7 +202,7 @@ const AnimatedContent = ({ territory }: AnimatedContentProps) => {
       "Welcome to Felicita Group",
       "We build and scale service companies",
       "From Vancouver to Monaco",
-      "12 brands. 3 continents. 1 vision.",
+      "12 brands. 2 continents. 1 vision.",
       "A new era of service companies",
     ],
     []
