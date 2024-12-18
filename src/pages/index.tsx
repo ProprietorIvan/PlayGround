@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { User } from 'lucide-react';
 import Navigation from './components/Navigation';
@@ -61,7 +61,6 @@ const brandData: BrandData = {
     ],
     type: 'HOME SERVICES'
   },
-
   SEATTLE: {
     brands: [
       {
@@ -148,13 +147,13 @@ const Home = ({ setCurrentPage }: HomeProps) => {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-white text-zinc-900">
+    <div className="min-h-screen bg-white text-zinc-900 flex flex-col">
       <Navigation currentPage={setCurrentPage} showActions={false} />
-      <main>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
+      <main className="flex-1 flex">
+        <div className="grid grid-cols-1 md:grid-cols-12 w-full">
           {/* Navigation */}
-          <div className="col-span-3 p-4 md:p-8 border-r border-zinc-200 bg-zinc-50 min-h-screen">
-            <div className="sticky top-8">
+          <div className="col-span-3 bg-zinc-50 border-r border-zinc-200">
+            <div className="sticky top-0 p-4 md:p-8 h-screen overflow-y-auto">
               <div className="text-xs uppercase mb-8 tracking-widest text-zinc-700 font-medium">Select Territory</div>
               <div className="space-y-3">
                 {Object.keys(brandData).map(territory => (
@@ -182,8 +181,10 @@ const Home = ({ setCurrentPage }: HomeProps) => {
           </div>
 
           {/* Content area */}
-          <div className="col-span-9 p-4 md:p-8 min-h-screen">
-            <AnimatedContent territory={selected} />
+          <div className="col-span-9 min-h-screen">
+            <div className="p-4 md:p-8 h-full">
+              <AnimatedContent territory={selected} />
+            </div>
           </div>
         </div>
       </main>
@@ -194,8 +195,6 @@ const Home = ({ setCurrentPage }: HomeProps) => {
 interface AnimatedContentProps {
   territory: string | null;
 }
-
-import { useMemo } from "react";
 
 const AnimatedContent = ({ territory }: AnimatedContentProps) => {
   const messages = useMemo(
@@ -226,20 +225,19 @@ const AnimatedContent = ({ territory }: AnimatedContentProps) => {
         const nextChar = currentMessage[currentText.length];
         setCurrentText((prev) => prev + nextChar);
       } else {
-        setIsTyping(false); // Typing is done for this message
+        setIsTyping(false);
       }
     };
 
     if (isTyping) {
-      const timeout = setTimeout(typeMessage, 80); // Typing speed
-      return () => clearTimeout(timeout); // Cleanup timeout on component unmount or re-render
+      const timeout = setTimeout(typeMessage, 80);
+      return () => clearTimeout(timeout);
     } else {
-      // Delay before moving to the next message
       const delay = setTimeout(() => {
         setStep((prev) => prev + 1);
         setCurrentText('');
         setIsTyping(true);
-      }, 1500); // Adjust delay as needed
+      }, 1500);
       return () => clearTimeout(delay);
     }
   }, [isTyping, currentText, step, messages]);
