@@ -158,7 +158,7 @@ const locationsData = {
         status: "Active",
         email: "ddd.luntik.11@gmail.com",
         ranking: "Top 1",
-        website: "roofsvancouver.com",
+        website: "https://www.roofsvancouver.com",
         gmb: "https://maps.app.goo.gl/NzyoyuCurHb9wT4L8?g_st=com.google.maps.preview.copy"
       }
     ]
