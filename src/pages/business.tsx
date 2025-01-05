@@ -193,7 +193,7 @@ const locationsData = {
         status: "needs to be made",
         email: "needs to be made",
         ranking: "Not ranking well",
-        website: "flood.ltd",
+        website: "https://www.flood.ltd",
         gmb: ""
       },
       {
@@ -201,7 +201,7 @@ const locationsData = {
         status: "Active",
         email: "azhandymaninternal@gmail.com",
         ranking: "Not ranking well",
-        website: "toronto-drywall.com",
+        website: "https://www.toronto-drywall.com",
         gmb: ""
       },
       {
@@ -209,7 +209,7 @@ const locationsData = {
         status: "Active",
         email: "azhandymaninternal@gmail.com",
         ranking: "Not ranking well",
-        website: "toronto-demolition.com",
+        website: "https://www.toronto-demolition.com",
         gmb: ""
       }
     ]
@@ -243,7 +243,7 @@ const locationsData = {
         status: "Active",
         email: "azhandymaninternal@gmail.com",
         ranking: "Not ranking well",
-        website: "floodbrooklyn.com",
+        website: "https://www.floodbrooklyn.com",
         gmb: "https://g.page/r/CY3ryRBkenZpEAE"
       }
     ]
