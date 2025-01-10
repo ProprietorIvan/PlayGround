@@ -3,7 +3,7 @@ import { Globe, MapPin, ExternalLink, Loader } from "lucide-react";
 
 export default function BusinessCard({ business }: { business: Business }) {
   return (
-    <div
+    business&&<div
       key={business.name}
       className="bg-zinc-50 rounded-lg p-6 hover:bg-zinc-100 transition-colors"
     >
