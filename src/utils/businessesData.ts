@@ -146,13 +146,13 @@ export   const locationsData:LocationsData  = {
         {
           name: "THE DEMOLITION COMPANY OF TORONTO",
           status: "Active",
-          email: "azhandymaninternal@gmail.com",
+          email: "eqar.main@gmail.com",
           keyword: "Demolition company near Toronto",
           googleSearch: "https://www.google.com/search?q=demolition+company+near+toronto&rlz=1C5CHFA_enIT1070FR1070&oq=demolition+company+near+toronto&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAAQRRhA0gEIODM1MGowajSoAgCwAgE&sourceid=chrome&ie=UTF-8",
           ranking: "Not ranking well",
           website: "https://www.toronto-demolition.com",
-          gmb: "https://maps.app.goo.gl/JjSabwdpCqN6pNhT7",
-          place_id: ""
+          gmb: "https://g.page/r/CT-8D6c5FSyIEAE",
+          place_id: "ChIJ0bvm_HjL1IkRP7wPpzkVLIg"
         }
       ]
     },
